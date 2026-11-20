@@ -1,7 +1,7 @@
 const hover_Seffect = new Audio("/prizza/public/Effects/tick.mp3");
 const click_Seffect = new Audio("/prizza/public/Effects/click.mp3");
 
-const backgroundMusic = new Audio("/prizza/V9Sound_213416.mp3");
+const backgroundMusic = new Audio("/prizza/lofi.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0;
 
