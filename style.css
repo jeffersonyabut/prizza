@@ -544,3 +544,265 @@ ul li:hover {
     height: 136px;
   }
 }
+
+/* ========================================
+   SOUND INTRO / ENTRY SCREEN
+======================================== */
+
+.sound-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: #001523;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease;
+}
+
+.sound-intro.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sound-intro-content {
+  width: min(100%, 420px);
+  text-align: center;
+  font-family: Manrope, sans-serif;
+  color: #f9fafb;
+}
+
+.intro-eyebrow {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  opacity: 0.5;
+}
+
+.sound-intro-content h2 {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: clamp(48px, 10vw, 76px);
+  font-weight: 800;
+  letter-spacing: -4px;
+}
+
+.intro-description {
+  margin: 16px 0 30px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.sound-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.sound-btn {
+  min-width: 125px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(249, 250, 251, 0.25);
+  font-family: Manrope, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.sound-btn:hover {
+  transform: translateY(-3px);
+}
+
+.sound-btn-primary {
+  color: #001523;
+  background: #f9fafb;
+}
+
+.sound-btn-secondary {
+  color: #f9fafb;
+  background: transparent;
+}
+
+.sound-btn span {
+  margin-right: 5px;
+}
+
+.intro-loading {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.intro-loading.active {
+  display: flex;
+}
+
+.intro-loading p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+}
+
+.loading-spinner {
+  width: 25px;
+  height: 25px;
+  border: 2px solid rgba(249, 250, 251, 0.2);
+  border-top-color: #f9fafb;
+  border-radius: 50%;
+  animation: introSpin 0.7s linear infinite;
+}
+
+@keyframes introSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .sound-intro-content h2 {
+    letter-spacing: -2px;
+  }
+
+  .sound-buttons {
+    gap: 8px;
+  }
+
+  .sound-btn {
+    min-width: 110px;
+    padding: 11px 16px;
+  }
+}
+
+/* ========================================
+   RESPONSIVE SOUND INTRO
+======================================== */
+
+/* Tablets */
+@media screen and (max-width: 834px) {
+  .sound-intro {
+    padding: 32px 24px;
+  }
+
+  .sound-intro-content {
+    width: min(100%, 380px);
+  }
+
+  .sound-intro-content h2 {
+    font-size: clamp(48px, 9vw, 68px);
+  }
+
+  .intro-description {
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+  .sound-intro {
+    padding: 24px 20px;
+  }
+
+  .sound-intro-content {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .intro-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .sound-intro-content h2 {
+    font-size: clamp(46px, 13vw, 60px);
+  }
+
+  .intro-description {
+    max-width: 260px;
+    margin: 14px auto 28px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .sound-buttons {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .sound-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+
+  .intro-loading {
+    margin-top: 26px;
+  }
+}
+
+/* Small mobile */
+@media screen and (max-width: 380px) {
+  .sound-intro-content h2 {
+    font-size: 46px;
+  }
+
+  .intro-description {
+    font-size: 11px;
+  }
+
+  .sound-buttons {
+    gap: 8px;
+  }
+
+  .sound-btn {
+    padding: 11px 8px;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 320px) {
+  .sound-intro {
+    padding: 20px 16px;
+  }
+
+  .sound-intro-content h2 {
+    font-size: 40px;
+  }
+
+  .sound-btn {
+    font-size: 11px;
+  }
+}
+
+/* Short screens */
+@media screen and (max-height: 500px) {
+  .sound-intro {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .intro-description {
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+
+  .sound-intro-content h2 {
+    font-size: 42px;
+  }
+
+  .intro-loading {
+    margin-top: 14px;
+  }
+}
