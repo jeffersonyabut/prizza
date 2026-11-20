@@ -17,6 +17,7 @@ const unmuteBtn = document.getElementById("unmuteBtn");
 const muteBtn = document.getElementById("muteBtn");
 
 let introStarted = false;
+document.body.classList.add("intro-active");
 
 function enterWebsite(playMusic) {
   if (introStarted) return;
@@ -40,8 +41,8 @@ function enterWebsite(playMusic) {
         const fadeInterval = setInterval(() => {
           volume += 0.05;
 
-          if (volume >= 0.15) {
-            volume = 0.15;
+          if (volume >= 0.35) {
+            volume = 0.35;
             clearInterval(fadeInterval);
           }
 
@@ -56,6 +57,7 @@ function enterWebsite(playMusic) {
   // One-second loading transition
   setTimeout(() => {
     soundIntro.classList.add("hidden");
+    document.body.classList.remove("intro-active");
   }, 1000);
 }
 
