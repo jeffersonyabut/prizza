@@ -24,18 +24,15 @@ function enterWebsite(playMusic) {
 
   introStarted = true;
 
-  // Hide buttons and show loading animation
   soundButtons.style.display = "none";
   introLoading.classList.add("active");
 
   if (playMusic) {
-    // Start playback directly from the button interaction
     backgroundMusic.volume = 0;
 
     backgroundMusic
       .play()
       .then(() => {
-        // Gradually increase music volume
         let volume = 0;
 
         const fadeInterval = setInterval(() => {
@@ -54,20 +51,14 @@ function enterWebsite(playMusic) {
       });
   }
 
-  // One-second loading transition
   setTimeout(() => {
     soundIntro.classList.add("hidden");
     document.body.classList.remove("intro-active");
   }, 1000);
 }
 
-unmuteBtn.addEventListener("click", () => {
-  enterWebsite(true);
-});
-
-muteBtn.addEventListener("click", () => {
-  enterWebsite(false);
-});
+unmuteBtn.addEventListener("click", () => enterWebsite(true));
+muteBtn.addEventListener("click", () => enterWebsite(false));
 
 // ========================================
 // SOUND EFFECTS
@@ -90,21 +81,91 @@ playHoverSound();
 // PROJECT CARDS
 // ========================================
 
-document.querySelectorAll(".card").forEach((el) => {
-  const title = el.getAttribute("data-title");
-  const tech = el.getAttribute("data-tech");
+const previewAccents = {
+  "POS + Inventory": "#79b8e8",
+  Portfolio: "#9bb8ff",
+  Multiplaycation: "#8ac9c2",
+  Filmstack: "#a6a8ff",
+  Anonmsg: "#83c7e5",
+  Prizzabooth: "#d3a9d5",
+  "AI Agent": "#83b7d7",
+};
+
+const projectCards = document.querySelectorAll(".card");
+
+projectCards.forEach((el, index) => {
+  const title = el.getAttribute("data-title") || "Untitled project";
+
+  const tech = (el.getAttribute("data-tech") || "")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const accent = previewAccents[title] || "#72bbff";
+  const projectNumber = String(index + 1).padStart(2, "0");
+
+  const techMarkup = tech
+    .map((item) => `<span class="tech-tag">${item}</span>`)
+    .join("");
+
+  el.style.setProperty("--preview-accent", accent);
+  el.setAttribute("role", "link");
+  el.setAttribute("tabindex", "0");
+  el.setAttribute("aria-label", `Open ${title} project`);
 
   el.innerHTML = `
-    <div style="width: 100%; height: 16px; display: flex; justify-content: flex-end;">
-      <img src="/prizza/public/link.svg" alt="link" />
+    <div class="card-heading">
+      <span class="project-index">${projectNumber} / SELECTED WORK</span>
+
+      <span class="project-link" aria-hidden="true">
+        <img src="/prizza/public/link.svg" alt="" />
+      </span>
     </div>
 
-    <div class="title-bar">
-      <h4>${title}</h4>
+    <div class="thumbnail" aria-hidden="true">
+      <div class="preview-window">
+        <div class="preview-toolbar">
+          <span class="preview-dot"></span>
+          <span class="preview-dot"></span>
+          <span class="preview-dot"></span>
+          <span class="preview-toolbar-line"></span>
+        </div>
+
+        <div class="preview-layout">
+          <div class="preview-sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="preview-main">
+            <span class="preview-heading"></span>
+
+            <div class="preview-metrics">
+              <span class="preview-metric"></span>
+              <span class="preview-metric"></span>
+              <span class="preview-metric"></span>
+            </div>
+
+            <div class="preview-chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <span class="preview-float"></span>
     </div>
 
-    <div class="thumbnail">
-      <p>${tech}</p>
+    <div class="card-footer">
+      <div class="project-copy">
+        <h4>${title}</h4>
+      </div>
+
+      <span class="project-arrow" aria-hidden="true">↗</span>
+    </div>
+
+    <div class="tech-list">
+      ${techMarkup}
     </div>
   `;
 
@@ -116,8 +177,14 @@ document.querySelectorAll(".card").forEach((el) => {
   el.addEventListener("click", () => {
     hover_Seffect.currentTime = 0;
     hover_Seffect.play().catch(() => {});
-
     openLink(title);
+  });
+
+  el.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openLink(title);
+    }
   });
 });
 
