@@ -1,18 +1,27 @@
 :root {
   --primary: #f9fafb;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
   background-color: #001523;
   z-index: 0;
+  overflow-x: hidden;
 }
+
+/* ========================================
+   HOME SECTION
+======================================== */
 
 .home-container {
   width: 100%;
-  height: 100vh;
-  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   gap: 180px;
@@ -20,23 +29,13 @@ body {
   position: relative;
 }
 
-.p-info p {
-  z-index: 1;
-}
-
-.prof-pic {
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.prof-desc p {
-  width: 184px;
-  font-family: Manrope;
-  font-size: 14px;
-  color: var(--primary);
-  font-weight: 500px;
-  opacity: 60%;
-  z-index: 10;
+.home-body {
+  width: max-content;
+  max-width: 90%;
+  align-items: center;
+  place-items: center;
+  height: max-content;
+  flex-grow: 0;
 }
 
 .home-body h1 {
@@ -44,47 +43,37 @@ body {
   font-size: 78px;
   font-family: Inter;
   color: var(--primary);
-  font-weight: 700px;
+  font-weight: 700;
   opacity: 100%;
   z-index: 1;
 }
 
-.nav-bar {
+.prof-desc {
+  display: flex;
+  align-items: center;
+  gap: 22px;
   width: 100%;
-  display: flex;
-  box-sizing: border-box;
-  justify-content: space-between;
-  justify-items: end;
-  /* padding: 12px 177px; */
-  align-items: center;
-  padding: 4vw 12vw;
-  align-items: center;
 }
 
-.logo {
-  font-family: Inter;
-  color: var(--primary);
-  font-size: 52px;
+.prof-pic {
+  border-radius: 50%;
+  z-index: 1;
+  max-width: 100%;
+  height: auto;
 }
 
-nav ul {
-  display: flex;
-  gap: 14px;
-}
-
-ul li {
-  list-style: none;
+.prof-desc p {
+  width: 184px;
   font-family: Manrope;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 14px;
   color: var(--primary);
+  font-weight: 500;
+  opacity: 60%;
+  z-index: 10;
 }
 
-ul li:hover {
-  /* border-bottom: 1px solid #72bbff; */
-  /* outline: 1px solid #0057a9; */
-  box-shadow: 0px 2px 0px #6e6e6e;
-  cursor: pointer;
+.p-info p {
+  z-index: 1;
 }
 
 .u-line {
@@ -129,20 +118,54 @@ ul li:hover {
   cursor: pointer;
 }
 
-.home-body {
-  width: max-content;
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.nav-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  place-items: center;
-  height: max-content;
-  flex-grow: 0;
+  padding: 4vw 12vw;
 }
 
-.prof-desc {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  width: 100%;
+.logo {
+  font-family: Inter;
+  color: var(--primary);
+  font-size: 52px;
 }
+
+nav ul {
+  display: flex;
+  gap: 14px;
+}
+
+ul li {
+  list-style: none;
+  font-family: Manrope;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+ul li:hover {
+  box-shadow: 0px 2px 0px #6e6e6e;
+  cursor: pointer;
+}
+
+.nav-mob {
+  display: none;
+}
+
+.soc-icons img {
+  width: clamp(16px, 5vw, 32px);
+  height: clamp(16px, 5vw, 32px);
+}
+
+/* ========================================
+   DECORATIVE ELEMENTS
+======================================== */
 
 .tri-det {
   position: absolute;
@@ -158,31 +181,40 @@ ul li:hover {
   z-index: 0;
 }
 
-.soc-icons img {
-  width: clamp(2rem, 5vw, 16px);
-  height: clamp(2rem, 5vw, 16px);
+.hexa-det {
+  animation: move 3s ease-in-out infinite;
 }
 
-.nav-mob {
-  display: none;
-}
+/* ========================================
+   PROJECT SECTION
+======================================== */
 
 .project-container {
   position: relative;
   box-sizing: border-box;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 342px);
-  padding: 5vw 7vw;
-  gap: 4vw;
+
+  grid-template-columns: repeat(3, minmax(0, 342px));
+
+  padding: clamp(32px, 5vw, 72px) clamp(16px, 7vw, 100px);
+
+  column-gap: clamp(20px, 3vw, 44px);
+  row-gap: clamp(24px, 3.5vw, 48px);
+
   justify-content: center;
+  align-items: center;
 }
 
 .card {
   padding: 14px;
   color: var(--primary);
-  width: 342px;
+
+  width: 100%;
+  max-width: 342px;
+  min-width: 0;
   height: 212px;
+
   box-sizing: border-box;
   border-radius: 16px;
   align-items: center;
@@ -190,7 +222,9 @@ ul li:hover {
   display: flex;
   flex-direction: column;
   z-index: 1;
+
   border: 2px solid transparent;
+
   background:
     linear-gradient(125deg, #1f242c 0%, #252a32 35%, #1f242c 60%) padding-box,
     linear-gradient(
@@ -202,6 +236,7 @@ ul li:hover {
         #2a2f38 100%
       )
       border-box;
+
   background-size: 200% 200%;
 }
 
@@ -209,21 +244,6 @@ ul li:hover {
   transform: scale(1) translateY(-1.2px);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
-/* .card {
-  background: transparent;
-} */
-
-/* .box {
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
-} */
-/* 
-.box:hover {
-  transform: scale(1) translateY(-1.2px);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-} */
 
 .title-bar {
   width: 88%;
@@ -242,21 +262,6 @@ ul li:hover {
   opacity: 80%;
   font-size: 14px;
 }
-
-/* .thumbnail {
-  border: 1px solid #f4f4f4;
-  width: 50%;
-  height: 148px;
-  align-items: end;
-  display: flex;
-  padding: 8px 12px;
-  opacity: 30%;
-  font-family: Manrope;
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: 11px;
-  border-radius: 6px;
-} */
 
 .thumbnail {
   box-sizing: border-box;
@@ -278,101 +283,169 @@ ul li:hover {
   margin-top: 11px;
 }
 
-.hexa-det {
-  animation: move 3s ease-in-out infinite;
-}
-
-/* .outro-container {
-  width: 100%;
-  height: max-content;
-  box-sizing: border-box;
-  padding: 122px 82px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.stack {
-  width: 350px;
-  height: max-content;
-  font-family: Inter;
-  gap: 16px;
-}
-
-.stack div h3 {
-  padding: 0;
-  margin: 0;
-}
-
-.soc-icons img {
-  cursor: pointer;
-}
-
-.soc-icons img:hover {
-  border-radius: 50%;
-  transform: scale(1.1);
-} */
+/* ========================================
+   ANIMATIONS
+======================================== */
 
 @keyframes move {
   0% {
     transform: scale(1.1) translateY(0px);
   }
+
   50% {
     transform: scale(1.1) translateY(-5px);
   }
+
   100% {
     transform: scale(1.1) translateY(0px);
   }
 }
 
-@media screen and (max-width: 521px) {
-  .stack div h3 {
-    font-size: 4vw;
-  }
-}
+/* ========================================
+   LARGE TABLET
+======================================== */
 
 @media screen and (max-width: 1190px) {
   .project-container {
-    grid-template-columns: repeat(2, 342px);
+    grid-template-columns: repeat(2, minmax(0, 342px));
+    column-gap: clamp(20px, 4vw, 40px);
+    row-gap: clamp(24px, 4vw, 40px);
+    padding: 48px clamp(24px, 5vw, 64px);
   }
 }
 
+/* ========================================
+   TABLET
+======================================== */
+
 @media screen and (max-width: 834px) {
-  .nav-bar {
-    padding: 12px 64px;
+  .home-container {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    gap: clamp(80px, 12vw, 120px);
+    padding-bottom: 32px;
   }
 
   .home-body {
     width: 80%;
   }
 
+  .home-body h1 {
+    font-size: clamp(42px, 8vw, 66px);
+  }
+
   .plane-det {
     right: 25px;
+    max-width: 100px;
   }
 
   .tri-det {
     bottom: 328px;
-    left: 84px;
-  }
-
-  .home-body h1 {
-    font-size: 10vw;
+    left: 8vw;
   }
 
   .project-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 342px));
+    column-gap: clamp(16px, 3vw, 28px);
+    row-gap: clamp(24px, 4vw, 36px);
+    padding: 40px 24px;
   }
 }
+
+/* ========================================
+   SMALL TABLET / LARGE MOBILE
+======================================== */
 
 @media screen and (max-width: 745px) {
   .project-container {
     grid-template-columns: minmax(0, 342px);
+    justify-content: center;
+    justify-items: center;
+    gap: 24px;
+    padding: 32px 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 342px;
   }
 }
 
+/* ========================================
+   MOBILE
+======================================== */
+
 @media screen and (max-width: 600px) {
+  .home-container {
+    width: 100%;
+    min-height: 100svh;
+    height: auto;
+    gap: 64px;
+    padding: 48px 0 32px;
+  }
+
+  .home-body {
+    width: min(90%, 460px);
+  }
+
+  .home-body h1 {
+    font-size: clamp(34px, 9vw, 48px);
+    text-align: center;
+  }
+
   .prof-desc {
+    width: 100%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .prof-pic {
+    width: clamp(150px, 42vw, 200px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin-left: 0 !important;
+  }
+
+  .prof-desc h2 {
+    font-size: clamp(24px, 7vw, 32px) !important;
+  }
+
+  .prof-desc p {
+    width: min(100%, 280px);
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+  }
+
+  .u-line {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .dl_button {
+    margin: 24px auto 0;
+  }
+
+  .plane-det {
+    width: 65px;
+    height: auto;
+    top: 20px;
+    right: 12px;
+  }
+
+  .tri-det {
+    max-width: 55px;
+    bottom: 180px;
+    left: 5vw;
+  }
+
+  .nav-bar {
+    padding: 12px 24px;
   }
 
   .nav-desk {
@@ -385,11 +458,10 @@ ul li:hover {
 
   .nav-mob ul {
     gap: 22px;
-    padding: 0;
+    padding: 10px 12px;
     margin: 0;
     border: 1px solid;
     border-radius: 8px;
-    padding: 10px 12px;
   }
 
   .nav-mob ul li {
@@ -397,14 +469,78 @@ ul li:hover {
     justify-content: center;
   }
 
-  .home-container {
-    gap: 112px;
+  .project-container {
+    width: 100%;
+    grid-template-columns: minmax(0, 342px);
+    justify-content: center;
+    justify-items: center;
+    gap: 20px;
+    padding: 28px 16px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 342px;
+    min-width: 0;
+    height: 212px;
+  }
+
+  .thumbnail {
+    width: 95%;
+    height: 148px;
+  }
+
+  .hexa-det {
+    max-width: 55px;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media screen and (max-width: 380px) {
+  .home-body {
+    width: 92%;
+  }
+
+  .home-body h1 {
+    font-size: 9vw;
   }
 
   .project-container {
-    grid-template-columns: repeat(1, 342px);
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .title-bar {
+    width: 95%;
+  }
+}
+
+/* ========================================
+   VERY SMALL SCREENS
+======================================== */
+
+@media screen and (max-width: 320px) {
+  .home-body h1 {
+    font-size: 28px;
+  }
+
+  .prof-desc {
+    gap: 16px;
+  }
+
+  .card {
+    height: 200px;
+  }
+
+  .thumbnail {
+    height: 136px;
   }
 }
