@@ -81,53 +81,7 @@
           </div>
         </div>
       </div>
-
-      <div class="flight-path">
-        <svg
-          viewBox="0 0 600 260"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <path
-            id="flightRoute"
-            d="M 35 190 C 150 25, 330 20, 555 145"
-            fill="none"
-            stroke="#f9fafb"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-dasharray="4 10"
-            pathLength="1000"
-            opacity="0.7"
-          >
-            <animate
-              attributeName="stroke-dashoffset"
-              values="1000;0;0;1000"
-              keyTimes="0;0.85;0.98;1"
-              dur="6s"
-              repeatCount="indefinite"
-            />
-          </path>
-
-          <image
-            href="/prizza/public/plane-det.svg"
-            width="38"
-            height="38"
-            x="-19"
-            y="-19"
-          >
-            <animateMotion
-              dur="6s"
-              repeatCount="indefinite"
-              rotate="auto"
-              path="M 35 190 C 150 25, 330 20, 555 145"
-              keyPoints="0;1;1"
-              keyTimes="0;0.85;1"
-              calcMode="linear"
-            />
-          </image>
-        </svg>
-      </div>
-
+      <img src="/prizza/public/plane-det.svg" class="plane-det" />
       <img
         src="/prizza/public/tri-detail.svg"
         class="tri-det"
