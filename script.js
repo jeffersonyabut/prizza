@@ -40,8 +40,8 @@ function enterWebsite(playMusic) {
         const fadeInterval = setInterval(() => {
           volume += 0.05;
 
-          if (volume >= 0.35) {
-            volume = 0.35;
+          if (volume >= 0.15) {
+            volume = 0.15;
             clearInterval(fadeInterval);
           }
 
