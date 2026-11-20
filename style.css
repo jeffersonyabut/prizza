@@ -1445,3 +1445,114 @@ ul li:hover {
     transform: none;
   }
 }
+
+/* =========================================
+   HERO — MINIMAL STARRY PORTRAIT
+========================================= */
+
+.hero-photo-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(230px, 28vw, 330px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Portrait */
+
+.prof-pic {
+  width: 86%;
+  height: 86%;
+  max-width: none;
+  border: none;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 15px 55px rgba(0, 87, 169, 0.13);
+}
+
+/* Star accents */
+
+.hero-star {
+  position: absolute;
+  z-index: 2;
+  color: var(--blue);
+  pointer-events: none;
+  user-select: none;
+  text-shadow: 0 0 12px rgba(114, 187, 255, 0.5);
+}
+
+.star-one {
+  top: 9%;
+  left: 12%;
+  font-size: 19px;
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+.star-two {
+  top: 25%;
+  right: 2%;
+  font-size: 25px;
+  animation: starTwinkle 4s ease-in-out infinite 0.5s;
+}
+
+.star-three {
+  bottom: 15%;
+  left: 7%;
+  font-size: 15px;
+  animation: starTwinkle 3.5s ease-in-out infinite 1s;
+}
+
+.star-four {
+  right: 13%;
+  bottom: 8%;
+  font-size: 20px;
+  animation: starTwinkle 4s ease-in-out infinite 1.5s;
+}
+
+.star-five {
+  top: 3%;
+  right: 30%;
+  color: rgba(249, 250, 251, 0.8);
+  font-size: 30px;
+  animation: starTwinkle 3s ease-in-out infinite 0.8s;
+}
+
+@keyframes starTwinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Keep the portrait balanced on smaller screens */
+
+@media screen and (max-width: 834px) {
+  .hero-photo-frame {
+    width: clamp(190px, 28vw, 250px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .hero-photo-frame {
+    width: clamp(175px, 48vw, 220px);
+  }
+}
+
+/* Remove old badge styles if any remain */
+
+.hero-photo-index,
+.hero-photo-mark {
+  display: none;
+}
