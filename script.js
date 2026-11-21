@@ -1,7 +1,7 @@
-const hover_Seffect = new Audio("/prizza/public/Effects/tick.mp3");
-const click_Seffect = new Audio("/prizza/public/Effects/click.mp3");
+const hover_Seffect = new Audio("public/Effects/tick.mp3");
+const click_Seffect = new Audio("public/Effects/click.mp3");
 
-const backgroundMusic = new Audio("/prizza/lofi.mp3");
+const backgroundMusic = new Audio("lofi.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0;
 
@@ -160,7 +160,7 @@ projectCards.forEach((el, index) => {
               aria-label="View ${title} source code on GitHub"
               title="View source code"
             >
-              <img src="/prizza/public/link.svg" alt="" />
+              <img src="public/link.svg" alt="" />
             </a>
           `
           : ""
