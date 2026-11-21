@@ -82,13 +82,43 @@ playHoverSound();
 // ========================================
 
 const previewAccents = {
-  "POS + Inventory": "#79b8e8",
+  "Maternity Management System": "#79b8e8",
   Portfolio: "#9bb8ff",
   Multiplaycation: "#8ac9c2",
   Filmstack: "#a6a8ff",
   Anonmsg: "#83c7e5",
-  Prizzabooth: "#d3a9d5",
   "AI Agent": "#83b7d7",
+};
+
+// Project destinations
+const projectLinks = {
+  "Maternity Management System": {
+    repo: "https://github.com/jeffersonyabut/MaternityManagementSystem",
+  },
+
+  Portfolio: {
+    demo: "https://jeffersonyabut.github.io/prizza/",
+    repo: "https://github.com/jeffersonyabut/prizza",
+  },
+
+  Multiplaycation: {
+    demo: "https://jeffersonyabut.github.io/multiplaycation/",
+    repo: "https://github.com/jeffersonyabut/multiplaycation",
+  },
+
+  Filmstack: {
+    demo: "https://jeffersonyabut.github.io/Filmstack/",
+    repo: "https://github.com/jeffersonyabut/Filmstack",
+  },
+
+  Anonmsg: {
+    demo: "https://jeffersonyabut.github.io/Anonmsg/",
+    repo: "https://github.com/jeffersonyabut/Anonmsg",
+  },
+
+  "AI Agent": {
+    repo: "https://github.com/jeffersonyabut/n8n-db-backup",
+  },
 };
 
 const projectCards = document.querySelectorAll(".card");
@@ -101,6 +131,7 @@ projectCards.forEach((el, index) => {
     .map((item) => item.trim())
     .filter(Boolean);
 
+  const project = projectLinks[title] || {};
   const accent = previewAccents[title] || "#72bbff";
   const projectNumber = String(index + 1).padStart(2, "0");
 
@@ -109,17 +140,31 @@ projectCards.forEach((el, index) => {
     .join("");
 
   el.style.setProperty("--preview-accent", accent);
-  el.setAttribute("role", "link");
+
+  el.setAttribute("role", "group");
   el.setAttribute("tabindex", "0");
-  el.setAttribute("aria-label", `Open ${title} project`);
+  el.setAttribute("aria-label", `${title} project`);
 
   el.innerHTML = `
     <div class="card-heading">
       <span class="project-index">${projectNumber} / SELECTED WORK</span>
 
-      <span class="project-link" aria-hidden="true">
-        <img src="/prizza/public/link.svg" alt="" />
-      </span>
+      ${
+        project.repo
+          ? `
+            <a
+              class="project-link"
+              href="${project.repo}"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View ${title} source code on GitHub"
+              title="View source code"
+            >
+              <img src="/prizza/public/link.svg" alt="" />
+            </a>
+          `
+          : ""
+      }
     </div>
 
     <div class="thumbnail" aria-hidden="true">
@@ -169,76 +214,110 @@ projectCards.forEach((el, index) => {
     </div>
   `;
 
+  // Prevent GitHub link clicks from triggering the card click
+  const repoLink = el.querySelector(".project-link");
+
+  if (repoLink) {
+    repoLink.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      click_Seffect.currentTime = 0;
+      click_Seffect.play().catch(() => {});
+    });
+  }
+
+  // Hover sound
   el.addEventListener("mouseenter", () => {
     click_Seffect.currentTime = 0;
     click_Seffect.play().catch(() => {});
   });
 
+  // Main card click
   el.addEventListener("click", () => {
     hover_Seffect.currentTime = 0;
     hover_Seffect.play().catch(() => {});
-    openLink(title);
+
+    openProject(title);
   });
 
+  // Keyboard accessibility
   el.addEventListener("keydown", (event) => {
+    if (event.target !== el) return;
+
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      openLink(title);
+      openProject(title);
     }
   });
 });
 
 // ========================================
-// DOWNLOAD BUTTON
-// ========================================
-
-const dl_btn = document.querySelector(".dl_button");
-
-if (dl_btn) {
-  dl_btn.addEventListener("click", () => {
-    hover_Seffect.currentTime = 0;
-    hover_Seffect.play().catch(() => {});
-  });
-
-  dl_btn.addEventListener("mouseenter", () => {
-    click_Seffect.currentTime = 0;
-    click_Seffect.play().catch(() => {});
-  });
-}
-
-// ========================================
 // PROJECT LINKS
 // ========================================
 
-function openLink(title) {
-  if (title === "Anonmsg") {
-    window.open("https://jeffersonyabut.github.io/Anonmsg/", "_blank");
-  }
+function openProject(title) {
+  const project = projectLinks[title];
 
-  if (title === "POS + Inventory") {
-    alert("Project is On Development");
-  }
+  if (!project) return;
 
-  if (title === "Multiplaycation") {
-    window.open("https://jeffersonyabut.github.io/multiplaycation/", "_blank");
-  }
+  const destination = project.demo || project.repo;
 
-  if (title === "Portfolio") {
-    window.open("https://jeffersonyabut.github.io/prizza/", "_blank");
-  }
-
-  if (title === "Filmstack") {
-    window.open("https://jeffersonyabut.github.io/Filmstack/", "_blank");
-  }
-
-  if (title === "Prizzabooth") {
-    alert("Project is On Development");
-  }
-
-  if (title === "AI Agent") {
-    window.open(
-      "https://www.facebook.com/profile.php?id=61581264338267",
-      "_blank",
-    );
+  if (destination) {
+    window.open(destination, "_blank", "noopener,noreferrer");
   }
 }
+
+// ========================================
+// DOWNLOAD BUTTON
+// ========================================
+
+// const dl_btn = document.querySelector(".dl_button");
+
+// if (dl_btn) {
+//   dl_btn.addEventListener("click", () => {
+//     hover_Seffect.currentTime = 0;
+//     hover_Seffect.play().catch(() => {});
+//   });
+
+//   dl_btn.addEventListener("mouseenter", () => {
+//     click_Seffect.currentTime = 0;
+//     click_Seffect.play().catch(() => {});
+//   });
+// }
+
+// // ========================================
+// // PROJECT LINKS
+// // ========================================
+
+// function openLink(title) {
+//   if (title === "Anonmsg") {
+//     window.open("https://jeffersonyabut.github.io/Anonmsg/", "_blank");
+//   }
+
+//   if (title === "POS + Inventory") {
+//     alert("Project is On Development");
+//   }
+
+//   if (title === "Multiplaycation") {
+//     window.open("https://jeffersonyabut.github.io/multiplaycation/", "_blank");
+//   }
+
+//   if (title === "Portfolio") {
+//     window.open("https://jeffersonyabut.github.io/prizza/", "_blank");
+//   }
+
+//   if (title === "Filmstack") {
+//     window.open("https://jeffersonyabut.github.io/Filmstack/", "_blank");
+//   }
+
+//   if (title === "Prizzabooth") {
+//     alert("Project is On Development");
+//   }
+
+//   if (title === "AI Agent") {
+//     window.open(
+//       "https://www.facebook.com/profile.php?id=61581264338267",
+//       "_blank",
+//     );
+//   }
+// }

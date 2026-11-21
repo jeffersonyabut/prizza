@@ -65,13 +65,21 @@
             </div>
 
             <div class="hero-actions">
-              <button class="dl_button" onclick="alert('On development')">
-                <span class="dl-button-text">Download CV</span>
-                <span class="dl-button-icon" aria-hidden="true">↓</span>
-              </button>
-
               <a href="#project-container" class="hero-project-link">
                 Explore projects <span>↗</span>
+              </a>
+
+              <a href="#about" class="hero-project-link">
+                About me <span>↗</span>
+              </a>
+
+              <a
+                href="https://github.com/jeffersonyabut"
+                class="hero-project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub <span>↗</span>
               </a>
             </div>
           </div>
@@ -102,7 +110,7 @@
 
         <div class="hero-bottomline">
           <span>CREATIVE PROCESS / CONTINUOUSLY IN MOTION</span>
-          <a href="#project-container">SCROLL TO EXPLORE ↓</a>
+          <a href="#about" class="scroll-explore"> Scroll to explore ↓ </a>
         </div>
       </div>
 
@@ -121,39 +129,177 @@
       />
     </div>
 
+    <section class="about-section" id="about">
+      <div class="about-inner">
+        <div class="about-topline">
+          <span>02 / A LITTLE ABOUT ME</span>
+          <span>MORE THAN WHAT I BUILD</span>
+        </div>
+
+        <div class="about-intro">
+          <span class="about-star about-star-one" aria-hidden="true">✦</span>
+          <span class="about-star about-star-two" aria-hidden="true">✧</span>
+          <span class="about-star about-star-three" aria-hidden="true">✦</span>
+          <span class="about-star about-star-four" aria-hidden="true">·</span>
+
+          <p class="about-kicker">CURIOSITY IN MOTION</p>
+
+          <h2>
+            Beyond the
+            <span>code.</span>
+          </h2>
+
+          <p class="about-lead">
+            I love coding, exploring, and discovering what I can create with a
+            little curiosity and a lot of patience.
+          </p>
+        </div>
+
+        <div class="about-story">
+          <div class="about-story-label">
+            <span class="about-index">01</span>
+            <span>THE WAY I SEE IT</span>
+          </div>
+
+          <div class="about-story-content">
+            <p>
+              I've always loved the feeling of figuring things out. Coding gives
+              me that feeling every time I start building something new.
+            </p>
+
+            <p>
+              Whenever I face a problem, I don't always know how to solve it.
+              Sometimes I have no idea where to begin. I just explore,
+              experiment, make mistakes, and keep trying until something finally
+              works.
+            </p>
+
+            <p>
+              And somehow, I find a solution. Every problem I overcome makes me
+              dream a little bigger, because it reminds me that I can do things
+              I once thought were beyond me.
+            </p>
+
+            <p>
+              Beyond coding, that mindset has taught me something about life:
+              not every challenge comes with a clear answer, and not every road
+              is easy. But I can keep moving, keep learning, and find my way
+              through.
+            </p>
+
+            <p class="about-closing">
+              No storm is the end of the road. I've made it through before, and
+              I'll keep finding my way forward.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-divider"></div>
+
+        <div class="about-build">
+          <div class="about-build-heading">
+            <p class="about-kicker">BEHIND THE PROCESS</p>
+            <h3>How I build<span>.</span></h3>
+            <p>
+              Every project is an opportunity to learn something new. Here's a
+              little of what I've explored while building.
+            </p>
+          </div>
+
+          <div class="build-list">
+            <div class="build-item">
+              <span class="build-number">01</span>
+              <div class="build-copy">
+                <h4>Version Control</h4>
+                <p>
+                  Using Git and GitHub to track changes, manage progress, and
+                  keep my work organized.
+                </p>
+              </div>
+              <span class="build-tech">GIT / GITHUB</span>
+            </div>
+
+            <div class="build-item">
+              <span class="build-number">02</span>
+              <div class="build-copy">
+                <h4>Incremental Development</h4>
+                <p>
+                  Building features step by step, testing along the way, and
+                  improving what already works.
+                </p>
+              </div>
+              <span class="build-tech">ITERATION</span>
+            </div>
+
+            <div class="build-item">
+              <span class="build-number">03</span>
+              <div class="build-copy">
+                <h4>Separation of Concerns</h4>
+                <p>
+                  Applying the MVVM pattern in Golddie to keep the interface,
+                  application logic, and data responsibilities organized.
+                </p>
+              </div>
+              <span class="build-tech">MVVM</span>
+            </div>
+
+            <div class="build-item">
+              <span class="build-number">04</span>
+              <div class="build-copy">
+                <h4>Data Management</h4>
+                <p>
+                  Working with Entity Framework Core and SQLite to store and
+                  manage application data.
+                </p>
+              </div>
+              <span class="build-tech">EF CORE / SQLITE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-bottomline">
+          <span>ALWAYS EXPLORING / ALWAYS BUILDING</span>
+          <a href="#project-container">SEE WHAT I'VE BUILT ↗</a>
+        </div>
+      </div>
+    </section>
+
     <div class="project-container" id="project-container">
       <div
         class="card"
-        data-title="POS + Inventory"
-        data-tech="C#, .NET MAUI, SQLite"
+        data-title="Maternity Management System"
+        data-tech="C#, WPF, .NET 10, EF Core, SQLite"
       ></div>
+
       <div
         class="card"
         data-title="Portfolio"
-        data-tech="Html, Css, JavaScript"
+        data-tech="HTML, CSS, JavaScript"
       ></div>
+
       <div
         class="card"
         data-title="Multiplaycation"
-        data-tech="Html, Css, JavaScript"
+        data-tech="HTML, CSS, JavaScript"
       ></div>
+
       <div
         class="card"
         data-title="Filmstack"
         data-tech="React, Tailwind"
       ></div>
+
       <div
         class="card"
         data-title="Anonmsg"
-        data-tech="Html, Css, JavaScript"
-      ></div>
-      <div
-        class="card"
-        data-title="Prizzabooth"
-        data-tech="React, Tailwind"
+        data-tech="HTML, CSS, JavaScript"
       ></div>
 
-      <div class="card" data-title="AI Agent" data-tech="n8n "></div>
+      <div
+        class="card"
+        data-title="AI Agent"
+        data-tech="n8n, Workflow Automation"
+      ></div>
       <img
         src="/prizza/public/hexa-det.svg"
         style="position: absolute; top: 15px; right: 3vw"
